@@ -42,10 +42,11 @@ class Blind(models.Model):
     A blind level.
     """
     
+    level = models.IntegerField()
     big = models.IntegerField()
     small = models.IntegerField()
-    time = models.IntegerField()
     ante = models.IntegerField(blank=True, null=True)
+    time = models.IntegerField()
     
     schema = models.ForeignKey(BlindSchema)
     

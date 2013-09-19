@@ -1,0 +1,45 @@
+[
+  {
+    "model": "game.blindschema",
+    "pk": 1,
+    "fields": {
+      "name": "Quick"
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 1,
+    "fields": {
+      "level": 1,
+      "big": 2,
+      "small": 1,
+      "ante": 0,
+      "time": 15,
+      "schema": 1
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 2,
+    "fields": {
+      "level": 2,
+      "big": 4,
+      "small": 2,
+      "ante": 0,
+      "time": 15,
+      "schema": 1
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 3,
+    "fields": {
+      "level": 3,
+      "big": 10,
+      "small": 5,
+      "ante": 0,
+      "time": 15,
+      "schema": 1
+    }
+  }
+]
