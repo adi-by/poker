@@ -17,3 +17,9 @@ angular.module('Poker', [])
             return num;
         };
     });
+
+function Audio($rootScope, $element) {
+    $rootScope.$on('levelUp', function() {
+       $element[0].play();
+    });
+};

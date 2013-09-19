@@ -5,11 +5,12 @@
     <link rel="stylesheet" href="css/main.css">
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-    <script src="js/main.js"></script>
     <script src="js/timer.js"></script>
+    <script src="js/blind.js"></script>
+    <script src="js/main.js"></script>
 </head>
 <body>
-<audio id="levelup" src="audio/levelup.mp3" preload="auto"></audio>
+<audio id="levelup" src="audio/levelup.mp3" preload="auto" ng-controller="Audio"></audio>
 
 <div id='clock' ng-controller="Timer" class="clock-class">
     <div id='Level' class='item-class'>
@@ -22,11 +23,11 @@
         <input class="btn-primary" type="submit" value="{{btn()}}">
     </form>
 </div>
-<div class='blinds-class'>
+<div class='blinds-class' ng-controller="Blind">
     <div id='small-blind' class='item-class blind-class'>
         <div class='blind-value'>
             <label>Small blind:</label>
-            100
+            <span>{{small}}</span>
         </div>
         <div class='next-blind-class'>
             <label>Next:</label>
@@ -36,7 +37,7 @@
     <div id='big-blind' class='item-class blind-class'>
         <div class='blind-value'>
             <label>Big blind:</label>
-            200
+            <span>{{big}}</span>
         </div>
         <div class='next-blind-class'>
             <label>Next:</label>

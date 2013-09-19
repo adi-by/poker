@@ -1,4 +1,4 @@
-function Timer($scope, $timeout) {
+function Timer($scope, $timeout, $rootScope) {
     $scope.level = 12;
     $scope.time = 4;
     $scope.seconds = function() {
@@ -18,7 +18,7 @@ function Timer($scope, $timeout) {
                 if ($scope.time == 0) {
                     $scope.time = 4;
                     $scope.level++;
-                    document.getElementById('levelup').play();
+                    $rootScope.$emit('levelUp', $scope.level);
                 }
             }
             $scope._timeout = $timeout($scope.onTimeout, 1000);
@@ -34,3 +34,4 @@ function Timer($scope, $timeout) {
         }
     }
 }
+
