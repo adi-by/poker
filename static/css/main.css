@@ -103,15 +103,16 @@ textarea {
     margin: 5px auto;
     max-width: 372px;
     width: auto;
-    height: 45px;
+    height: auto;
     padding-top: 6px;
     font-size: 180%;
     clear: both;
+    overflow: auto;
 }
 
 .blind-class {
-    min-width: 360px;
-    clear: none;
+    /*min-width: 360px;*/
+    /*clear: none;*/
 }
 
 #small-blind {
@@ -125,39 +126,47 @@ textarea {
 }
 
 .blind-value {
-    float: left;
-    margin-left: 5%;
+    margin-left: 1%;
+    margin-right: 1%;
     margin-top: 1%;
     margin-bottom: 1%;
-    margin-right: 5%;
+    float: left;
+    /*height: inherit;*/
+
 }
 
 .next-blind-class {
-    float: right;
-    margin-right: 5px;
-    margin-left: 5px;
-    margin-top: 1%;
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-top: 2%;
     margin-bottom: 1%;
     font-size: 80%;
-}
-
-.clock-class {
-    height: auto;
+    float: right;
+    /*height: inherit;*/
 }
 
 /************************************************************************************
 MEDIA QUERIES
 *************************************************************************************/
 
-
-@media screen and (max-width: 735px) {
-
-    .blinds-class {
-        width: 100%;
+/*@media only screen and (max-width: 380px) {*/
+@media only screen and (min-width: 216px) and (min-device-width: 216px) {
+    .main-div-class {
+        max-width: 100%;
+        margin: 0 auto;
     }
 
-    .blind-class {
-        min-width: 50%;
+    .clock-class {
+        max-width: 100%;
+    }
+
+    .item-class {
+        max-width: 100%;
+        font-size: 150%;
+        font-size: 8vw;
+    }
+    .blind-text-class {
+
     }
 
     #small-blind {
@@ -167,29 +176,37 @@ MEDIA QUERIES
     #big-blind {
         float: none;
     }
-
 }
 
-@media screen and (max-width: 380px) {
-
-    .blinds-class {
-        width: 100%;
+@media only screen and (min-width: 480px) and (min-device-width: 480px) {
+    .main-div-class {
+        max-width: 820px;
+        margin: 0 auto;
     }
 
-    .blind-class {
-        min-width: 100%;
+    .item-class {
+        max-width: 520px;
+        font-size: 250%;
     }
 
     .blind-text-class {
-        font-size: 150%;
-        font-size: 8vw;
+        font-size: 250%;
     }
 }
 
+@media only screen and (min-width: 900px) and (min-device-width: 900px) {
+    .blind-class {
+        clear: none;
+    }
 
+    #small-blind {
+        float: left;
+    }
 
-
-
+    #big-blind {
+        float: right;
+    }
+}
 
 /* ==========================================================================
    Helper classes

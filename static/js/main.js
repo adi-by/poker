@@ -7,14 +7,15 @@ angular.module('Poker', [])
         return function (n, len) {
             var num = parseInt(n, 10);
             len = parseInt(len, 10);
-            return Array(len - num).join('0') + num;
+            num_str = '' + num;
+            return Array(len - num_str.length).join('0') + num_str;
         };
     }).
     config(function($interpolateProvider) {
         $interpolateProvider.startSymbol('{[{');
         $interpolateProvider.endSymbol('}]}');
-    }).
-    value('dataModel', dataModel);
+    });
+//    .value('dataModel', dataModel);
 
 
 function Audio($rootScope, $element) {
