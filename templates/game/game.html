@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html ng-app="Poker">
 <head>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-    <script src="js/timer.js"></script>
-    <script src="js/blind.js"></script>
-    <script src="js/main.js"></script>
+    <script src="{% static 'js/timer.js' %}"></script>
+    <script src="{% static 'js/blind.js' %}"></script>
+    <script src="{% static 'js/timer.js' %}"></script>
+    <script type="text/javascript">
+        data_model = {{blinds}};
+    </script>
 </head>
 <body>
-<audio id="levelup" src="audio/levelup.mp3" preload="auto" ng-controller="Audio"></audio>
+<audio id="levelup" src="{% static 'audio/levelup.mp3' %}" preload="auto" ng-controller="Audio"></audio>
 <div style="max-width: 750px; margin: 0 auto">
 <div id='clock' ng-controller="Timer" class="clock-class">
     <div id='Level' class='item-class'>
