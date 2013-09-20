@@ -16,7 +16,12 @@ angular.module('Poker', [])
             }
             return num;
         };
+    }).
+    config(function($interpolateProvider) {
+        $interpolateProvider.startSymbol('{[{');
+        $interpolateProvider.endSymbol('}]}');
     });
+
 
 function Audio($rootScope, $element) {
     $rootScope.$on('levelUp', function() {

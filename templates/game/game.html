@@ -14,20 +14,20 @@
 <div style="max-width: 750px; margin: 0 auto">
 <div id='clock' ng-controller="Timer" class="clock-class">
     <div id='Level' class='item-class'>
-        <span>Level {{level}}</span>
+        <span>Level {[{level}]}</span>
     </div>
     <div class='item-class'>
-        <span>{{minutes()}}:{{seconds() | numberFixedLen:2}}</span>
+        <span>{[{minutes()}]}:{[{seconds() | numberFixedLen:2}]}</span>
     </div>
     <form class='item-class' ng-submit="flip()">
-        <input class="btn-primary" type="submit" value="{{btn()}}">
+        <input class="btn-primary" type="submit" value="{[{btn()}]}">
     </form>
 </div>
 <div ng-controller="Blind">
     <div id='small-blind' class='item-class blind-class blind-text-class'>
         <div class='blind-value'>
             <label>Small blind:</label>
-            <span>{{small}}</span>
+            <span>{[{small}]}</span>
         </div>
         <div class='next-blind-class'>
             <label>Next:</label>
@@ -37,7 +37,7 @@
     <div id='big-blind' class='item-class blind-class blind-text-class'>
         <div class='blind-value'>
             <label>Big blind:</label>
-            <span>{{big}}</span>
+            <span>{[{big}]}</span>
         </div>
         <div class='next-blind-class'>
             <label>Next:</label>
@@ -48,7 +48,7 @@
 <div id='ante' class='item-class blind-text-class' ng-controller="Ante">
     <div class='blind-value'>
         <label>Ante:</label>
-        <span>{{ante}}</span>
+        <span>{[{ante}]}</span>
     </div>
     <div class='next-blind-class'>
         <label>Next:</label>
