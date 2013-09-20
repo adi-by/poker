@@ -23,7 +23,10 @@ class Player(models.Model):
         """
         Return the number of games the player appears in.
         """
-        return len(self.game_set.all())
+        return len(self.games.all())
+    
+    def games_won(self):
+        return self.gamed_played() - len(self.lost.all())
         
     
 class BlindSchema(models.Model):
@@ -70,25 +73,43 @@ class Game(models.Model):
     Parameters of an entire game.
     """
     
-    pay = models.IntegerField()
+    pay = models.IntegerField()     # Per player
+    chips = models.IntegerField()   # Per player
     bounty = models.IntegerField()
     date = models.DateField(default=datetime.date.today)
     
-    players = models.ManyToManyField(Player)
+    players = models.ManyToManyField(Player, related_name='games')
+    players_lost = models.ManyToManyField(Player, default=[], related_name='lost')
     blind_schema = models.ForeignKey(BlindSchema)
 
     def __unicode__(self):
         return 'Game: {}'.format(self.date)
     
-    def player_num(self):
+    def starting_player_num(self):
         """
-        Return number of players.
+        Return number of players at start of the game.
         """
         return len(self.players.all())
     
-    def prize_money(self):
-        return self.player_num() * self.pay
+    def curr_player_num(self):
+        """
+        Return current number of players.
+        """
+        return self.starting_player_num() - len(self.players_lost.all())
     
+    def prize_money(self):
+        return self.starting_player_num() * self.pay
+    
+    def average_stack(self):
+        return ((self.chips * self.starting_player_num()) / 
+                float(self.curr_player_num()))
+        
+    def remove_player(self, player):
+        """
+        Removes a player by the pk of the player.
+        """
+        self.players_lost.add(player)
+        
 
 class Prize(models.Model):
     """
