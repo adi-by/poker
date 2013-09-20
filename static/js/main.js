@@ -7,20 +7,14 @@ angular.module('Poker', [])
         return function (n, len) {
             var num = parseInt(n, 10);
             len = parseInt(len, 10);
-            if (isNaN(num) || isNaN(len)) {
-                return n;
-            }
-            num = ''+num;
-            while (num.length < len) {
-                num = '0'+num;
-            }
-            return num;
+            return Array(len - num).join('0') + num;
         };
     }).
     config(function($interpolateProvider) {
         $interpolateProvider.startSymbol('{[{');
         $interpolateProvider.endSymbol('}]}');
-    });
+    }).
+    value('dataModel', dataModel);
 
 
 function Audio($rootScope, $element) {

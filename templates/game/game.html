@@ -8,10 +8,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
     <script src="{% static 'js/timer.js' %}"></script>
     <script src="{% static 'js/blind.js' %}"></script>
-    <script src="{% static 'js/timer.js' %}"></script>
     <script type="text/javascript">
-        data_model = {{blinds}};
+        dataModel = {{blinds}};
     </script>
+    <script src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
 <audio id="levelup" src="{% static 'audio/levelup.mp3' %}" preload="auto" ng-controller="Audio"></audio>
