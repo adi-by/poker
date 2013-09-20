@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load jsonify %}
 <html ng-app="Poker">
 <head>
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
@@ -9,7 +10,7 @@
     <script src="{% static "js/timer.js" %}"></script>
     <script src="{% static 'js/blind.js' %}"></script>
     <script type="text/javascript">
-        dataModel = {{blinds}};
+        dataModel = JSON.parse('{{blinds|jsonify}}');
     </script>
     <script src="{% static 'js/main.js' %}"></script>
 </head>

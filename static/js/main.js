@@ -14,8 +14,7 @@ angular.module('Poker', [])
     config(function($interpolateProvider) {
         $interpolateProvider.startSymbol('{[{');
         $interpolateProvider.endSymbol('}]}');
-    });
-//    .value('dataModel', dataModel);
+    }).value('dataModel', dataModel);
 
 
 function Audio($rootScope, $element) {
