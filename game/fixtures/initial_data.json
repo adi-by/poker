@@ -41,5 +41,31 @@
       "time": 15,
       "schema": 1
     }
+  },
+  {
+    "model": "game.player",
+    "pk": 1,
+    "fields": {
+		"first_name": "Adi",
+		"last_name": "Ben-Yoash"
+    }
+  },
+  {
+    "model": "game.player",
+    "pk": 2,
+    "fields": {
+		"first_name": "Sion",
+		"last_name": "Schori"
+    }
+  },
+  {
+    "model": "game.game",
+    "pk": 1,
+    "fields": {
+		"pay": 20,
+		"bounty": 0,
+		"blind_schema": 1,
+		"players": [1, 2]
+    }
   }
 ]
