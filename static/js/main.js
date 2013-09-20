@@ -1,5 +1,5 @@
 $(window).resize(function() {
-    $(".blind-class").css("z-index", 1);
+    $(".blind-text-class").css("z-index", 1);
 });
 
 angular.module('Poker', [])

@@ -96,26 +96,22 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-.blinds-class {
-    max-width: 750px;
-    /*border: 3px solid green;*/
-    height: auto;
-    margin: 10px auto;
-}
 
 .item-class {
     border: 2px solid green;
     text-align: center;
     margin: 5px auto;
-    max-width: 370px;
+    max-width: 372px;
     width: auto;
     height: 45px;
-    padding-top: 5px;
+    padding-top: 6px;
     font-size: 180%;
+    clear: both;
 }
 
 .blind-class {
     min-width: 360px;
+    clear: none;
 }
 
 #small-blind {
@@ -181,9 +177,12 @@ MEDIA QUERIES
     }
 
     .blind-class {
+        min-width: 100%;
+    }
+
+    .blind-text-class {
         font-size: 150%;
         font-size: 8vw;
-        min-width: 100%;
     }
 }
 
