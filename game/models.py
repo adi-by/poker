@@ -27,6 +27,13 @@ class Player(models.Model):
     
     def games_won(self):
         return self.gamed_played() - len(self.lost.all())
+    
+    def is_active(self, game_num):
+        """
+        Return whether a player is still playing in a certain game.
+        """
+        wanted_game = self.games.get(pk=game_num)
+        return wanted_game.is_active(self)
         
     
 class BlindSchema(models.Model):
@@ -104,12 +111,24 @@ class Game(models.Model):
         return ((self.chips * self.starting_player_num()) / 
                 float(self.curr_player_num()))
         
+    def is_active(self, player):
+        """
+        Return whether a player is active.
+        """
+        return (player in self.players.all() and 
+                player not in self.players_lost.all())
+        
     def remove_player(self, player):
         """
-        Removes a player by the pk of the player.
+        Removes a player from the game.
         """
         self.players_lost.add(player)
         
+    def get_blinds(self):
+        """
+        Return the blinds as a sorted list.
+        """
+        return self.blind_schema.blind_set.all().order_by('level')
 
 class Prize(models.Model):
     """
