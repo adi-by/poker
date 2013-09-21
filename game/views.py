@@ -5,8 +5,7 @@ def get_game_context(request, game):
     """
     Returns the context we want for the client for a given game.
     """
-    context = {'blinds': game.blind_schema.blind_set.all().order_by('level')}
-    return render(request, 'game/game.html', context)
+    return render(request, 'game/game.html', game)
 
 def game(request, game_id):
     """
