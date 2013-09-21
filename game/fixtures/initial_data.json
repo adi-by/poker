@@ -14,7 +14,7 @@
       "big": 2,
       "small": 1,
       "ante": 0,
-      "time": 15,
+      "time": 5000,
       "schema": 1
     }
   },
@@ -26,7 +26,7 @@
       "big": 4,
       "small": 2,
       "ante": 0,
-      "time": 15,
+      "time": 5000,
       "schema": 1
     }
   },
@@ -38,7 +38,7 @@
       "big": 10,
       "small": 5,
       "ante": 0,
-      "time": 15,
+      "time": 4000,
       "schema": 1
     }
   },

@@ -10,7 +10,7 @@
     <script src="{% static "js/timer.js" %}"></script>
     <script src="{% static 'js/blind.js' %}"></script>
     <script type="text/javascript">
-        dataModel = JSON.parse('{{blinds|jsonify}}');
+        blinds = JSON.parse('{{blinds|jsonify}}');
     </script>
     <script src="{% static 'js/main.js' %}"></script>
 </head>

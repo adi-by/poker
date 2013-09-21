@@ -1,11 +1,11 @@
-function Timer($scope, $timeout, $rootScope) {
-    $scope.level = 12;
-    $scope.time = 4;
+function Timer($scope, $timeout, $rootScope, blinds) {
+    $scope.level = 1; // TODO: get from server.
+    $scope.time_left = blinds[$scope.level - 1].fields.time; // TODO: get from server.
     $scope.seconds = function() {
-        return $scope.time % 60;
+        return Math.floor($scope.time_left / 1000) % 60;
     };
     $scope.minutes = function() {
-        return Math.floor($scope.time / 60);
+        return Math.floor($scope.time_left / 1000 / 60);
     };
 
     $scope.paused = true;
@@ -15,8 +15,17 @@ function Timer($scope, $timeout, $rootScope) {
             $scope.level = level;
             $rootScope.$emit('levelUp', $scope.level);
         }
-        $scope.time = time;
+        $scope.time_left = time;
     };
+    $scope._start_timeout = function() {
+        var timeout = 1000;
+        if (($scope.time_left % 1000) != 0) {
+            timeout += Math.min($scope.time_left % 1000, 150); // adjust by at most 150ms.
+        }
+        $scope._delta = timeout;
+        $scope._timeout = $timeout($scope.onTimeout, timeout);
+    }
+
     $scope.flip = function() {
         $scope.paused = !$scope.paused;
         if ($scope._timeout != null) {
@@ -25,13 +34,20 @@ function Timer($scope, $timeout, $rootScope) {
         }
         if (!$scope.paused) {
             $scope.onTimeout = function() {
-                $scope.time--;
-                $scope._timeout = $timeout($scope.onTimeout, 1000);
-                if ($scope.time == 0) {
-                    $scope.set_time($scope.level + 1, 4);
+                var finished = false;
+                $scope.time_left -= $scope._delta;
+                if ($scope.time_left == 0) {
+                    if ($scope.level < blinds.length) {
+                        $scope.set_time($scope.level + 1, blinds[$scope.level].fields.time);
+                    } else {
+                        finished = true;
+                    }
+                }
+                if (!finished) {
+                    $scope._start_timeout();
                 }
             }
-            $scope._timeout = $timeout($scope.onTimeout, 1000);
+            $scope._start_timeout();
         }
     };
     $scope.btn = function() {
