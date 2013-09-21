@@ -1,13 +1,16 @@
-function Blind($scope, $rootScope) {
-    $scope.small = 100
-    $scope.big = 200
+function Blind($scope, $rootScope, blinds) {
+    $scope.update_level = function(level) {
+        var level_blinds = blinds[level - 1].fields;
+        $scope.small = level_blinds.small;
+        $scope.big = level_blinds.big;
+    }
+    $scope.update_level(1); // TODO: get from server.
     $rootScope.$on('levelUp', function(_, level) {
-        $scope.small *=  2;
-        $scope.big *= 2;
+        $scope.update_level(level);
     });
 }
 
-function Ante($scope, $rootScope, $element) {
+function Ante($scope, $rootScope, $element, blinds) {
     $scope.set_ante = function(ante) {
         $scope.ante = ante;
         if (ante > 0) {
@@ -16,9 +19,13 @@ function Ante($scope, $rootScope, $element) {
             $element.hide();
         }
     }
-    $scope.set_ante(1);
+
+    $scope.update_level = function(level) {
+        $scope.set_ante(blinds[level - 1].fields.ante);
+    }
+    $scope.update_level(1); // TODO: get from server.
 
     $rootScope.$on('levelUp', function(_, level) {
-        $scope.set_ante(0);
+        $scope.update_level(level);
     });
 }

@@ -37,7 +37,7 @@
       "level": 3,
       "big": 10,
       "small": 5,
-      "ante": 0,
+      "ante": 1,
       "time": 4000,
       "schema": 1
     }
