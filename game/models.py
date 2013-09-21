@@ -35,7 +35,7 @@ class Player(models.Model):
         wanted_game = self.games.get(pk=game_num)
         return wanted_game.is_active(self)
         
-    
+        
 class BlindSchema(models.Model):
     """
     A schema of blinds, each with its own parameters.
@@ -124,11 +124,21 @@ class Game(models.Model):
         """
         self.players_lost.add(player)
         
+    # For templates
+    
     def get_blinds(self):
         """
         Return the blinds as a sorted list.
         """
         return self.blind_schema.blind_set.all().order_by('level')
+    
+    def get_players(self):
+        """
+        Return list of playing players.
+        """
+        return [player for player in self.players.all() 
+                if player not in self.players_lost.all()]
+    
 
 class Prize(models.Model):
     """
