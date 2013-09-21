@@ -11,8 +11,7 @@ class Player(models.Model):
     A poker player.
     """
     
-    first_name = models.CharField(max_length=MAX_NAME_LEN)
-    last_name = models.CharField(max_length=MAX_NAME_LEN)
+    name = models.CharField(max_length=MAX_NAME_LEN)
     
     money_total = models.IntegerField(default=0)
     

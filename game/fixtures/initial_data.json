@@ -46,16 +46,35 @@
     "model": "game.player",
     "pk": 1,
     "fields": {
-		"first_name": "Adi",
-		"last_name": "Ben-Yoash"
+		"name": "Adi Ben-Yoash"
     }
   },
   {
     "model": "game.player",
     "pk": 2,
     "fields": {
-		"first_name": "Sion",
-		"last_name": "Schori"
+		"name": "Sion Schori"
+    }
+  },
+  {
+    "model": "game.player",
+    "pk": 3,
+    "fields": {
+		"name": "Amir Rachum"
+    }
+  },
+  {
+    "model": "game.player",
+    "pk": 4,
+    "fields": {
+		"name": "Ido Livneh"
+    }
+  },
+  {
+    "model": "game.player",
+    "pk": 5,
+    "fields": {
+		"name": "Pavel Fux"
     }
   },
   {
@@ -66,7 +85,7 @@
 		"chips": 330,
 		"bounty": 0,
 		"blind_schema": 1,
-		"players": [1, 2]
+		"players": [1, 2, 5]
     }
   }
 ]
