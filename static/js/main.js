@@ -14,7 +14,9 @@ angular.module('Poker', [])
     config(function($interpolateProvider) {
         $interpolateProvider.startSymbol('{[{');
         $interpolateProvider.endSymbol('}]}');
-    }).value('blinds', blinds);
+    }).
+    value('blinds', blinds).
+    value('players', players);
 
 
 function Audio($rootScope, $element) {
