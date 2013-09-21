@@ -52,9 +52,9 @@ function Timer($scope, $timeout, $rootScope, blinds) {
     };
     $scope.btn = function() {
         if ($scope.paused) {
-            return 'start';
+            return 'Start';
         } else {
-            return 'pause';
+            return 'Pause';
         }
     }
 }
