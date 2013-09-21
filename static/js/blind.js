@@ -29,10 +29,10 @@ function AnteValue($scope, $rootScope, $element, blinds) {
     $scope._super_update_level = $scope.update_level;
     $scope.update_level = function (level) {
         $scope._super_update_level(level);
-        if ($scope.value == 0) {
-            $element.parent().hide();
+        if ($scope.value == null || $scope.value == 0) {
+            $element.hide();
         } else {
-            $element.parent().show();
+            $element.show();
         }
     }
 }
