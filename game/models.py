@@ -124,6 +124,11 @@ class Game(models.Model):
         """
         self.players_lost.add(player)
         
+    def get_blinds(self):
+        """
+        Return the blinds as a sorted list.
+        """
+        return self.blind_schema.blind_set.all().order_by('level')
 
 class Prize(models.Model):
     """
