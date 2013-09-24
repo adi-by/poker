@@ -5,19 +5,12 @@ from django.shortcuts import render, get_object_or_404
 from models import Game, Player
 
 
-def get_game_context(request, game):
-    """
-    Returns the context we want for the client for a given game.
-    """
-    return render(request, 'game/game.html', {'game': game})
-
-
 def game(request, game_id):
     """
     Send game context to client side.
     """
     curr_game = get_object_or_404(Game, pk=game_id)
-    return get_game_context(request, curr_game)
+    return render(request, 'game/game.html', {'game': curr_game})
 
 
 def remove(request, game_id, player_id):
@@ -33,12 +26,13 @@ def remove(request, game_id, player_id):
     return HttpResponse()
 
 
-def clock(request, game_id, is_running):
+def clock(request, game_id):
     """
     Start the clock on a given game.
     """
     
     curr_game = get_object_or_404(Game, pk=game_id)
+    is_running = request.GET.get('is_running', '')
     
     if is_running:
         curr_game.start_playing()
