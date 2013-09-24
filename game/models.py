@@ -5,6 +5,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 
 MAX_NAME_LEN = 100
+MSEC_IN_SEC = 1000
 
 
 class Player(models.Model):
@@ -93,6 +94,7 @@ class Game(models.Model):
     blind_level = models.IntegerField(default=1)
     time_in_blind_level = models.FloatField(default=0.0)
     blind_level_curr_start = models.FloatField(default=0.0)
+    is_running = models.BooleanField(default=False)
 
     def __unicode__(self):
         return 'Game: {}'.format(self.date)
@@ -133,30 +135,44 @@ class Game(models.Model):
         """
         Start the timer.
         """
-        self.blind_level_curr_start = time.time()
+        self.blind_level_curr_start = time.time() * MSEC_IN_SEC
+        self.is_running = True
+        
+    def pause_playing(self):
+        """
+        Pause the timer.
+        """
+        self.calculate_blind_state()
+        self.is_running = False
         
     def calculate_blind_state(self):
         """
         Update blinds according to current time.
         """
         
-        start_calc = time.time()
-        time_diff = start_calc - self.blind_level_curr_start
-        
-        # Calculation isn't finished until we've used all the time
-        while time_diff > 0.0:
-            curr_blind = self.blind_schema.blind_set.get(level=self.blind_level)
-            time_in_blind = curr_blind.time - self.time_in_blind_level
-            
-            if time_in_blind >= time_diff:
-                self.time_in_blind_level += time_diff
-                time_diff = 0.0
-            else:
-                time_diff -= time_in_blind
-                self.time_in_blind_level = 0.0
-                self.blind_level += 1
-                 
-        self.blind_level_curr_start = start_calc
+        if self.is_running:
+            start_calc = time.time() * MSEC_IN_SEC
+            time_diff = start_calc - self.blind_level_curr_start
+            # Calculation isn't finished until we've used all the time
+            while time_diff > 0.0:
+                curr_blind = self.blind_schema.blind_set.get(
+                                                    level=self.blind_level)
+                
+                time_in_blind = curr_blind.time - self.time_in_blind_level
+                
+                if time_in_blind >= time_diff:
+                    self.time_in_blind_level += time_diff
+                    time_diff = 0.0
+                else:
+                    time_diff -= time_in_blind
+                    
+                    if self.blind_level < len(self.blind_schema.blind_set.all()):
+                        self.blind_level += 1
+                        self.time_in_blind_level = 0.0
+                    else:
+                        return
+                     
+            self.blind_level_curr_start = start_calc
         
     # For templates
     
@@ -182,7 +198,7 @@ class Game(models.Model):
         """
         self.calculate_blind_state()
         curr_level = self.blind_schema.blind_set.get(level=self.blind_level)
-        return curr_level, curr_level.time - self.time_in_blind_level
+        return curr_level.level, curr_level.time - self.time_in_blind_level
      
 
 class Prize(models.Model):

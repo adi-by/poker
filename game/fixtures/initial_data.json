@@ -85,6 +85,9 @@
 		"chips": 330,
 		"bounty": 0,
 		"blind_schema": 1,
+		"blind_level": 1,
+        "time_in_blind_level": 0.0,
+        "blind_level_curr_start": 0.0,
 		"players": [1, 2, 5]
     }
   }
