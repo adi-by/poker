@@ -145,7 +145,7 @@ class Game(models.Model):
         
         # Calculation isn't finished until we've used all the time
         while time_diff > 0.0:
-            curr_blind = self.blind_schema.blind.set.get(level=self.blind_level)
+            curr_blind = self.blind_schema.blind_set.get(level=self.blind_level)
             time_in_blind = curr_blind.time - self.time_in_blind_level
             
             if time_in_blind >= time_diff:
@@ -181,7 +181,7 @@ class Game(models.Model):
         Return current blind level and time left in it.
         """
         self.calculate_blind_state()
-        curr_level = self.blind_schema.blind.set.get(level=self.blind_level)
+        curr_level = self.blind_schema.blind_set.get(level=self.blind_level)
         return curr_level, curr_level.time - self.time_in_blind_level
      
 
