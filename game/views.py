@@ -1,3 +1,5 @@
+import json
+
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from models import Game, Player
@@ -23,5 +25,41 @@ def remove(request, game_id, player_id):
     curr_game = get_object_or_404(Game, pk=game_id)
     curr_player = get_object_or_404(Player, pk=player_id)
     curr_game.remove_player(curr_player)
+    curr_game.save()
     
     return HttpResponse()
+
+def start(request, game_id):
+    """
+    Start the clock on a given game.
+    """
+    
+    curr_game = get_object_or_404(Game, pk=game_id)
+    curr_game.start_playing()
+    curr_game.save()
+    
+    return HttpResponse()
+
+def stop(request, game_id):
+    """
+    Stop the clock on a given game.
+    
+    This view also calculates whether we've switched to a new blind in the meantime.
+    """
+    
+    curr_game = get_object_or_404(Game, pk=game_id)
+    curr_game.calculate_blind_state()
+    curr_game.save()
+    
+    return HttpResponse()
+
+def get_time(request, game_id):
+    """
+    Return current time left in blind.
+    """
+    
+    curr_game = get_object_or_404(Game, pk=game_id)
+    level, time_left = curr_game.get_blind_state()
+    json_data = json.dumps({'level': level, 'time': time_left})
+    
+    return HttpResponse(json_data, mimetype="application/json")

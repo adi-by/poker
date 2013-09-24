@@ -17,7 +17,7 @@ class Player(models.Model):
     money_total = models.IntegerField(default=0)
     
     def __unicode__(self):
-        return 'Player: {} {}'.format(self.first_name, self.last_name)
+        return 'Player: {}'.format(self.name)
     
     def games_played(self):
         """
@@ -128,18 +128,35 @@ class Game(models.Model):
         Removes a player from the game.
         """
         self.players_lost.add(player)
+                 
+    def start_playing(self):
+        """
+        Start the timer.
+        """
+        self.blind_level_curr_start = time.time()
         
-    def update_blind_time(self, new_level=False):
+    def calculate_blind_state(self):
         """
-        Update the time in current blind level.
+        Update blinds according to current time.
         """
-        if not new_level:
-            self.time_in_blind_level = time.time() - self.blind_level_curr_start
-        else:
-            # New level!
-            self.blind_level += 1
-            self.blind_level_curr_start = time.time()
-            self.time_in_blind_level = 0.0 
+        
+        start_calc = time.time()
+        time_diff = start_calc - self.blind_level_curr_start
+        
+        # Calculation isn't finished until we've used all the time
+        while time_diff > 0.0:
+            curr_blind = self.blind_schema.blind.set.get(level=self.blind_level)
+            time_in_blind = curr_blind.time - self.time_in_blind_level
+            
+            if time_in_blind >= time_diff:
+                self.time_in_blind_level += time_diff
+                time_diff = 0.0
+            else:
+                time_diff -= time_in_blind
+                self.time_in_blind_level = 0.0
+                self.blind_level += 1
+                 
+        self.blind_level_curr_start = start_calc
         
     # For templates
     
@@ -159,15 +176,13 @@ class Game(models.Model):
     def get_blind_level(self):
         return self.blind_level
     
-    def get_time_left_in_level(self):
+    def get_blind_state(self):
         """
-        Returns time left in current blind level.
+        Return current blind level and time left in it.
         """
+        self.calculate_blind_state()
         curr_level = self.blind_schema.blind.set.get(level=self.blind_level)
-        
-        # Starting time - time already played
-        self.update_blind_time()
-        return curr_level.time - self.time_in_blind_level
+        return curr_level, curr_level.time - self.time_in_blind_level
      
 
 class Prize(models.Model):
