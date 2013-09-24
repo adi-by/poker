@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from models import Game, Player
 
@@ -23,4 +24,4 @@ def remove(request, game_id, player_id):
     curr_player = get_object_or_404(Player, pk=player_id)
     curr_game.remove_player(curr_player)
     
-    return get_game_context(request, curr_game)
+    return HttpResponse()
