@@ -1,3 +1,4 @@
+import time
 import datetime
 
 from django.db import models
@@ -87,6 +88,11 @@ class Game(models.Model):
     players = models.ManyToManyField(Player, related_name='games')
     players_lost = models.ManyToManyField(Player, default=[], related_name='lost')
     blind_schema = models.ForeignKey(BlindSchema)
+    
+    # State
+    blind_level = models.IntegerField(default=1)
+    time_in_blind_level = models.FloatField(default=0.0)
+    blind_level_curr_start = models.FloatField(default=0.0)
 
     def __unicode__(self):
         return 'Game: {}'.format(self.date)
@@ -123,6 +129,18 @@ class Game(models.Model):
         """
         self.players_lost.add(player)
         
+    def update_blind_time(self, new_level=False):
+        """
+        Update the time in current blind level.
+        """
+        if not new_level:
+            self.time_in_blind_level = time.time() - self.blind_level_curr_start
+        else:
+            # New level!
+            self.blind_level += 1
+            self.blind_level_curr_start = time.time()
+            self.time_in_blind_level = 0.0 
+        
     # For templates
     
     def get_blinds(self):
@@ -137,7 +155,20 @@ class Game(models.Model):
         """
         return [player for player in self.players.all() 
                 if player not in self.players_lost.all()]
+        
+    def get_blind_level(self):
+        return self.blind_level
     
+    def get_time_left_in_level(self):
+        """
+        Returns time left in current blind level.
+        """
+        curr_level = self.blind_schema.blind.set.get(level=self.blind_level)
+        
+        # Starting time - time already played
+        self.update_blind_time()
+        return curr_level.time - self.time_in_blind_level
+     
 
 class Prize(models.Model):
     """
