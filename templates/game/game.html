@@ -40,7 +40,7 @@
         </div>
         <div class="row-fluid">
         <h1 class="span6 offset3">
-            <button class='btn btn-large btn-block btn-success' ng-click="flip()">
+            <button class='btn btn-large btn-default btn-success start-class' ng-click="flip()">
                 <span>{[{btn()}]}</span>
             </button>
         </h1>
@@ -86,7 +86,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li ng-repeat="player in players">
-                        <a ng-href="#" ng-click="remove(player)">{[{player.name}]}</a>
+                        <a ng-click="remove(player)">{[{player.name}]}</a>
                     </li>
                 </ul>
             </div>

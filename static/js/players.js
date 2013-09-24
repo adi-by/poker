@@ -5,13 +5,18 @@ function Player(name, key) {
 
 function Players($scope, $element, $http, game_key, players) {
     $scope.players = players;
+    $scope.update = function () {
+        if ($scope.players.length == 0) {
+            $element.hide();
+        }
+    }
+    $scope.update();
+
     $scope.remove = function(player) {
         $http({method: 'GET', url: 'remove/' + player.key}).
             success(function(data, status, headers, config) {
             $scope.players.splice($scope.players.indexOf(player), 1);
-            if ($scope.players.length == 0) {
-                $element.hide();
-            }
+            $scope.update();
         });
     }
 }
