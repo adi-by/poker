@@ -11,6 +11,7 @@ angular.module('Poker', [])
         $interpolateProvider.startSymbol('{[{');
         $interpolateProvider.endSymbol('}]}');
     }).
+    value('game_key', game_key).
     value('blinds', blinds).
     value('players', players);
 

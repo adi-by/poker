@@ -14,10 +14,11 @@
     <script src="{% static 'js/blind.js' %}"></script>
     <script src="{% static 'js/players.js' %}"></script>
     <script type="text/javascript">
+        game_key = JSON.parse('{{game.pk|jsonify}}');
         blinds = JSON.parse('{{game.get_blinds|jsonify}}');
         players = []
         {% for player in game.get_players %}
-        players.push(JSON.parse('{{player.name|jsonify}}'));
+        players.push(new Player(JSON.parse('{{player.name|jsonify}}'), JSON.parse('{{player.pk|jsonify}}')));
         {% endfor %}
     </script>
     <script src="{% static 'js/main.js' %}"></script>
@@ -85,7 +86,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li ng-repeat="player in players">
-                        <a ng-href="#" ng-click="remove(player)">{[{player}]}</a>
+                        <a ng-href="#" ng-click="remove(player)">{[{player.name}]}</a>
                     </li>
                 </ul>
             </div>
