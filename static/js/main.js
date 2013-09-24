@@ -1,7 +1,3 @@
-$(window).resize(function() {
-    $(".blind-text-class").css("z-index", 1);
-});
-
 angular.module('Poker', [])
     .filter('numberFixedLen', function () {
         return function (n, len) {
