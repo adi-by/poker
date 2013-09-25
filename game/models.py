@@ -170,6 +170,7 @@ class Game(models.Model):
                         self.blind_level += 1
                         self.time_in_blind_level = 0.0
                     else:
+                        self.time_in_blind_level = curr_blind.time
                         return
                      
             self.blind_level_curr_start = start_calc

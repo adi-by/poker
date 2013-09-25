@@ -51,6 +51,7 @@ def get_time(request, game_id):
     
     curr_game = get_object_or_404(Game, pk=game_id)
     level, time_left = curr_game.get_blind_state()
-    json_data = json.dumps({'level': level, 'time': time_left})
+    json_data = json.dumps({'level': level, 'time': time_left, 
+                            'is_running': curr_game.is_running})
     
     return HttpResponse(json_data, mimetype="application/json")
