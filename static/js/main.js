@@ -13,11 +13,24 @@ angular.module('Poker', [])
     }).
     value('game_key', game_key).
     value('blinds', blinds).
-    value('players', players);
+    value('players', players).
+    value('initial_level', initial_state[0]).
+    value('initial_time', initial_state[1]);
 
 
 function Audio($rootScope, $element) {
     $rootScope.$on('levelUp', function() {
        $element[0].play();
     });
+};
+
+function Server($scope, $rootScope, $http, $timeout) {
+    $scope.get_time = function() {
+        $http({method: 'GET', url: 'get_time'}).
+            success(function(data, status, headers, config) {
+                $rootScope.$emit('timeUpdate', data);
+                $timeout($scope.get_time, 5000);
+            });
+    }
+    $scope.get_time();
 };

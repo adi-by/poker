@@ -20,10 +20,11 @@
         {% for player in game.get_players %}
         players.push(new Player(JSON.parse('{{player.name|jsonify}}'), JSON.parse('{{player.pk|jsonify}}')));
         {% endfor %}
+        initial_state = JSON.parse('{{game.get_blind_state|jsonify}}');
     </script>
     <script src="{% static 'js/main.js' %}"></script>
 </head>
-<body>
+<body ng-controller="Server">
 <audio id="levelup" src="{% static 'audio/levelup.mp3' %}" preload="auto" ng-controller="Audio"></audio>
 <div class="row-fluid text-center">
     <div class="span12">

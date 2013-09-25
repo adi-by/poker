@@ -1,8 +1,8 @@
-function BlindValue($scope, $rootScope, $element, blinds) {
+function BlindValue($scope, $rootScope, $element, blinds, initial_level) {
     $scope.init = function(name, is_next) {
         $scope.name = name;
         $scope.is_next = is_next;
-        $scope.update_level(1); // TODO: get from server.
+        $scope.update_level(initial_level);
     }
 
     $scope.update_level = function(level) {
@@ -19,13 +19,17 @@ function BlindValue($scope, $rootScope, $element, blinds) {
         }
     }
 
+    $rootScope.$on('timeUpdate', function(_, data) {
+        $scope.update_level(data.level);
+    });
+
     $rootScope.$on('levelUp', function(_, level) {
         $scope.update_level(level);
     });
 }
 
-function AnteValue($scope, $rootScope, $element, blinds) {
-    BlindValue($scope, $rootScope, $element, blinds);
+function AnteValue($scope, $rootScope, $element, blinds, initial_level) {
+    BlindValue($scope, $rootScope, $element, blinds, initial_level);
     $scope._super_update_level = $scope.update_level;
     $scope.update_level = function (level) {
         $scope._super_update_level(level);
