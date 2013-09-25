@@ -3,7 +3,7 @@ function Player(name, key) {
     this.key = key;
 }
 
-function Players($scope, $element, $http, game_key, players) {
+function Players($scope, $rootScope, $element, $http, game_key, players) {
     $scope.players = players;
     $scope.update = function () {
         if ($scope.players.length == 0) {
@@ -11,11 +11,11 @@ function Players($scope, $element, $http, game_key, players) {
         }
     }
     $scope.update();
+    $rootScope.$on('playerUpdate', $scope.update);
 
     $scope.remove = function(player) {
         $http({method: 'GET', url: 'remove/' + player.key}).
             success(function(data, status, headers, config) {
-            $scope.players.splice($scope.players.indexOf(player), 1);
             $scope.update();
         });
     }

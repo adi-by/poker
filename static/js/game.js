@@ -19,7 +19,7 @@ angular.module('PokerGame', [])
     value('initial_is_running', initial_is_running).
     value('total_chips', total_chips);
 
-function Server($scope, $rootScope, $http, $timeout) {
+function Server($scope, $rootScope, $http, $timeout, players) {
     $scope.get_time = function() {
         $http({method: 'GET', url: 'get_time'}).
             success(function(data, status, headers, config) {
@@ -39,6 +39,29 @@ function Server($scope, $rootScope, $http, $timeout) {
             data = JSON.parse(e.data);
             console.log("Got server event " + event.data);
             $rootScope.$emit('timeUpdate', data);
+        });
+    }, false);
+    source.addEventListener('player_update', function(e) {
+        $scope.$apply(function () {
+            data = JSON.parse(e.data).players;
+            console.log("Got server event " + event.data);
+            var to_remove = [];
+            for (var i = 0; i < players.length; i++) {
+                var found = false;
+                for (var j = 0; j < data.length; j++) {
+                    if (data[j] == players[i].key) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    to_remove.push(players[i])
+                }
+            }
+            for (var i = 0; i < to_remove.length; i++) {
+                players.splice(players.indexOf(to_remove[i]), 1);
+            }
+            $rootScope.$emit('playerUpdate', data);
         });
     }, false);
 
