@@ -33,6 +33,11 @@ body {
     width: 100%;
 }
 
+.table-hover tbody tr:hover > td,
+.table-hover tbody tr:hover > th {
+    background-color: #E1F1F8;
+}
+
 @media only screen and (min-width: 480px) {
     .clock-class {
         font-size: 1000%;
