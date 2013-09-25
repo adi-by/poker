@@ -14,6 +14,7 @@
     <script src="{% static 'js/blind.js' %}"></script>
     <script src="{% static 'js/players.js' %}"></script>
     <script type="text/javascript">
+        audio_file = '{% static 'audio/levelup.mp3' %}';
         game_key = JSON.parse('{{game.pk|jsonify}}');
         blinds = JSON.parse('{{game.get_blinds|jsonify}}');
         players = []
@@ -26,7 +27,6 @@
     <script src="{% static 'js/main.js' %}"></script>
 </head>
 <body ng-controller="Server">
-<audio id="levelup" src="{% static 'audio/levelup.mp3' %}" preload="auto" ng-controller="Audio"></audio>
 <div class="row-fluid text-center">
     <div class="span12">
     <div id='clock' ng-controller="Timer">

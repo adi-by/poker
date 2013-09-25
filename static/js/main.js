@@ -18,13 +18,6 @@ angular.module('Poker', [])
     value('initial_time', initial_state[1]).
     value('initial_is_running', initial_is_running);
 
-
-function Audio($rootScope, $element) {
-    $rootScope.$on('levelUp', function() {
-       $element[0].play();
-    });
-};
-
 function Server($scope, $rootScope, $http, $timeout) {
     $scope.get_time = function() {
         $http({method: 'GET', url: 'get_time'}).
@@ -35,7 +28,7 @@ function Server($scope, $rootScope, $http, $timeout) {
     }
     $scope.get_time();
 
-    source=new EventSource("/game/data_stream");
+    source = new EventSource("data_stream");
     source.onmessage = function(event) {
         console.log("Got event " + event.data);
     };
@@ -47,6 +40,10 @@ function Server($scope, $rootScope, $http, $timeout) {
             $rootScope.$emit('timeUpdate', data);
         });
     }, false);
+
+    $rootScope.$on('levelUp', function() {
+        new Audio(audio_file).play();
+    });
 };
 
 

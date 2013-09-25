@@ -32,7 +32,6 @@ function Timer($scope, $timeout, $rootScope, $http, blinds,
         if (timeout == 0) {
             timeout = 1000;
         }
-        console.log('waiting for ' + timeout);
         $scope._last_time = new Date().getTime();
         $scope._timeout = $timeout($scope.onTimeout, timeout);
     }
