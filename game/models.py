@@ -34,7 +34,7 @@ class Player(models.Model):
         Return whether a player is still playing in a certain game.
         """
         wanted_game = self.games.get(pk=game_num)
-        return wanted_game.is_active(self)
+        return wanted_game.is_player_active(self)
         
         
 class BlindSchema(models.Model):
@@ -95,6 +95,7 @@ class Game(models.Model):
     time_in_blind_level = models.FloatField(default=0.0)
     blind_level_curr_start = models.FloatField(default=0.0)
     is_running = models.BooleanField(default=False)
+    aborted = models.BooleanField(default=False)
 
     def __unicode__(self):
         return 'Game: {}'.format(self.date)
@@ -118,7 +119,7 @@ class Game(models.Model):
         return ((self.chips * self.starting_player_num()) / 
                 float(self.curr_player_num()))
         
-    def is_active(self, player):
+    def is_player_active(self, player):
         """
         Return whether a player is active.
         """
@@ -200,6 +201,9 @@ class Game(models.Model):
         self.calculate_blind_state()
         curr_level = self.blind_schema.blind_set.get(level=self.blind_level)
         return curr_level.level, curr_level.time - self.time_in_blind_level
+    
+    def is_active(self):
+        return not self.aborted and self.curr_player_num > 1
      
 
 class Prize(models.Model):
