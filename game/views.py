@@ -43,10 +43,6 @@ def clock(request, game_id):
         
     curr_game.save()
     
-    # Sending event
-    json_data = json.dumps({'game': game_id, 'is_running': is_running})
-    send_event("an_event", json_data, channel="data")
-    
     print 'Done sending!'
     return HttpResponse()
 
