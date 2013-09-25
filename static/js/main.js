@@ -34,4 +34,19 @@ function Server($scope, $rootScope, $http, $timeout) {
             });
     }
     $scope.get_time();
+
+    source=new EventSource("/game/data_stream");
+    source.onmessage = function(event) {
+        console.log("Got event " + event.data);
+    };
+
+    source.addEventListener('clock_update', function(e) {
+        $scope.$apply(function () {
+            data = JSON.parse(e.data);
+            console.log("Got server event " + event.data);
+            $rootScope.$emit('timeUpdate', data);
+        });
+    }, false);
 };
+
+

@@ -14,6 +14,6 @@ urlpatterns = patterns('',
         name='clock'),
     url(r'^(?P<game_id>\d+)/get_time/$', views.get_time, name='get_time'),
     url(r'^(?P<game_id>\d+)data_stream/$', 
-        DynamicRedisQueueView.as_view(redis_channel="data"), 
+        DynamicRedisQueueView.as_view(redis_channel="updates"), 
         name="data_stream"),
 )
