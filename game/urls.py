@@ -4,7 +4,8 @@ import views
 
 class DynamicRedisQueueView(RedisQueueView):
     def get_redis_channel(self):
-        return self.kwargs['game_id'] or self.redis_channel
+        print self.kwargs['game_id'], self.redis_channel
+        return 'game{}'.format(self.kwargs['game_id']) or self.redis_channel
     
 urlpatterns = patterns('',
     url(r'^(?P<game_id>\d+)/$', views.game, name='game'),
@@ -13,7 +14,7 @@ urlpatterns = patterns('',
     url(r'^(?P<game_id>\d+)/clock/$', views.clock, 
         name='clock'),
     url(r'^(?P<game_id>\d+)/get_time/$', views.get_time, name='get_time'),
-    url(r'^(?P<game_id>\d+)data_stream/$', 
+    url(r'^(?P<game_id>\d+)/data_stream/$', 
         DynamicRedisQueueView.as_view(redis_channel="updates"), 
         name="data_stream"),
 )

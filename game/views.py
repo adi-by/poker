@@ -11,7 +11,8 @@ def main(request):
     """
     Main page.
     """
-    return render(request, 'main.html', {'games': Game.objects.all()})
+    active_games = [game for game in Game.objects.all() if game.is_active()]
+    return render(request, 'main.html', {'games': active_games})
     
 def game(request, game_id):
     """
@@ -53,9 +54,8 @@ def clock(request, game_id):
     level, time_left = curr_game.get_blind_state()
     json_data = json.dumps({'game': game_id, 'is_running': is_running,
                             'level': level, 'time': time_left})
-    send_event("clock_update", json_data, channel="updates")
+    send_event("clock_update", json_data, channel='game{}'.format(game_id))
     
-    print 'Done sending!'
     return HttpResponse()
 
 
