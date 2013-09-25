@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.conf.urls import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from game.views import main
+from main.views import main
 admin.autodiscover()
 
 urlpatterns = patterns('',

@@ -6,13 +6,6 @@ from django_sse.redisqueue import send_event
 
 from models import Game, Player
 
-
-def main(request):
-    """
-    Main page.
-    """
-    active_games = [game for game in Game.objects.all() if game.is_active()]
-    return render(request, 'main.html', {'games': active_games})
     
 def game(request, game_id):
     """
