@@ -1,4 +1,4 @@
-angular.module('Poker', [])
+angular.module('PokerGame', [])
     .filter('numberFixedLen', function () {
         return function (n, len) {
             var num = parseInt(n, 10);
