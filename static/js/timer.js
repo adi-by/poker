@@ -7,6 +7,9 @@ function Timer($scope, $timeout, $rootScope, $http, blinds, initial_level, initi
     $scope.minutes = function() {
         return Math.floor($scope.time_left / 1000 / 60);
     };
+    $scope.has_ended = function() {
+        return $scope.level == blinds.length && $scope.time_left == 0;
+    }
 
     $scope.paused = true;
     $scope._timeout = null;
@@ -20,6 +23,7 @@ function Timer($scope, $timeout, $rootScope, $http, blinds, initial_level, initi
 
     $rootScope.$on('timeUpdate', function(_, data) {
         $scope.set_time(data.level, data.time);
+        $scope.paused = !data.is_running;
     });
 
 
@@ -33,6 +37,10 @@ function Timer($scope, $timeout, $rootScope, $http, blinds, initial_level, initi
     }
 
     $scope.flip = function() {
+        if ($scope.has_ended()) {
+            return;
+        }
+
         $http({method: 'GET', url: 'clock/', params: {is_running: $scope.paused}}).
             success(function(data, status, headers, config) {
                 $scope.paused = !$scope.paused;
@@ -60,6 +68,9 @@ function Timer($scope, $timeout, $rootScope, $http, blinds, initial_level, initi
             });
     };
     $scope.btn = function() {
+        if ($scope.has_ended()) {
+            return 'Game Ended';
+        }
         if ($scope.paused) {
             return 'Start';
         } else {
