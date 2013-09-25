@@ -7,6 +7,12 @@ from django_sse.redisqueue import send_event
 from models import Game, Player
 
 
+def main(request):
+    """
+    Main page.
+    """
+    return render(request, 'main.html', {'games': Game.objects.all()})
+    
 def game(request, game_id):
     """
     Send game context to client side.
