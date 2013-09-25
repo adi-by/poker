@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from game.models import Game
 
+    
 def main(request):
     """
     Main page.

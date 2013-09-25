@@ -25,6 +25,12 @@ def remove(request, game_id, player_id):
     curr_game.remove_player(curr_player)
     curr_game.save()
     
+    # Sending event
+    players_left = curr_game.get_players()
+    player_pks = [player.pk for player in players_left]
+    json_data = json.dumps({'players': player_pks})
+    send_event("player_update", json_data, channel='game{}'.format(game_id))
+    
     return HttpResponse()
 
 
@@ -45,8 +51,8 @@ def clock(request, game_id):
     
     # Sending event
     level, time_left = curr_game.get_blind_state()
-    json_data = json.dumps({'game': game_id, 'is_running': is_running,
-                            'level': level, 'time': time_left})
+    json_data = json.dumps({'is_running': is_running, 'level': level, 
+                            'time': time_left})
     send_event("clock_update", json_data, channel='game{}'.format(game_id))
     
     return HttpResponse()
