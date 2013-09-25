@@ -3,7 +3,21 @@
     "model": "game.blindschema",
     "pk": 1,
     "fields": {
-      "name": "Quick"
+      "name": "VeryQuick"
+    }
+  },
+  {
+    "model": "game.blindschema",
+    "pk": 2,
+    "fields": {
+      "name": "Fast"
+    }
+  },
+  {
+    "model": "game.blindschema",
+    "pk": 3,
+    "fields": {
+      "name": "Slow"
     }
   },
   {
@@ -43,6 +57,270 @@
     }
   },
   {
+    "model": "game.blind",
+    "pk": 4,
+    "fields": {
+      "level": 1,
+      "big": 2,
+      "small": 1,
+      "ante": 0,
+      "time": 900000,
+      "schema": 2
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 5,
+    "fields": {
+      "level": 2,
+      "big": 4,
+      "small": 2,
+      "ante": 0,
+      "time": 900000,
+      "schema": 2
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 6,
+    "fields": {
+      "level": 3,
+      "big": 6,
+      "small": 3,
+      "ante": 0,
+      "time": 900000,
+      "schema": 2
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 7,
+    "fields": {
+      "level": 4,
+      "big": 10,
+      "small": 5,
+      "ante": 0,
+      "time": 900000,
+      "schema": 2
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 8,
+    "fields": {
+      "level": 5,
+      "big": 20,
+      "small": 10,
+      "ante": 1,
+      "time": 900000,
+      "schema": 2
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 9,
+    "fields": {
+      "level": 6,
+      "big": 30,
+      "small": 15,
+      "ante": 1,
+      "time": 900000,
+      "schema": 2
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 10,
+    "fields": {
+      "level": 7,
+      "big": 40,
+      "small": 20,
+      "ante": 2,
+      "time": 900000,
+      "schema": 2
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 11,
+    "fields": {
+      "level": 8,
+      "big": 60,
+      "small": 30,
+      "ante": 3,
+      "time": 900000,
+      "schema": 2
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 12,
+    "fields": {
+      "level": 9,
+      "big": 80,
+      "small": 40,
+      "ante": 4,
+      "time": 900000,
+      "schema": 2
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 13,
+    "fields": {
+      "level": 10,
+      "big": 100,
+      "small": 50,
+      "ante": 5,
+      "time": 900000,
+      "schema": 2
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 14,
+    "fields": {
+      "level": 11,
+      "big": 200,
+      "small": 100,
+      "ante": 10,
+      "time": 900000,
+      "schema": 2
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 15,
+    "fields": {
+      "level": 1,
+      "big": 2,
+      "small": 1,
+      "ante": 0,
+      "time": 1200000,
+      "schema": 3
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 16,
+    "fields": {
+      "level": 2,
+      "big": 4,
+      "small": 2,
+      "ante": 0,
+      "time": 1200000,
+      "schema": 3
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 17,
+    "fields": {
+      "level": 3,
+      "big": 6,
+      "small": 3,
+      "ante": 0,
+      "time": 1200000,
+      "schema": 3
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 18,
+    "fields": {
+      "level": 4,
+      "big": 10,
+      "small": 5,
+      "ante": 0,
+      "time": 1200000,
+      "schema": 3
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 19,
+    "fields": {
+      "level": 5,
+      "big": 20,
+      "small": 10,
+      "ante": 1,
+      "time": 1200000,
+      "schema": 3
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 20,
+    "fields": {
+      "level": 6,
+      "big": 30,
+      "small": 15,
+      "ante": 1,
+      "time": 1200000,
+      "schema": 3
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 21,
+    "fields": {
+      "level": 7,
+      "big": 40,
+      "small": 20,
+      "ante": 2,
+      "time": 1200000,
+      "schema": 3
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 22,
+    "fields": {
+      "level": 8,
+      "big": 60,
+      "small": 30,
+      "ante": 3,
+      "time": 1200000,
+      "schema": 3
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 23,
+    "fields": {
+      "level": 9,
+      "big": 80,
+      "small": 40,
+      "ante": 4,
+      "time": 1200000,
+      "schema": 2
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 24,
+    "fields": {
+      "level": 10,
+      "big": 100,
+      "small": 50,
+      "ante": 5,
+      "time": 1200000,
+      "schema": 3
+    }
+  },
+  {
+    "model": "game.blind",
+    "pk": 25,
+    "fields": {
+      "level": 11,
+      "big": 200,
+      "small": 100,
+      "ante": 10,
+      "time": 1200000,
+      "schema": 3
+    }
+  },
+  {
     "model": "game.player",
     "pk": 1,
     "fields": {
@@ -78,6 +356,41 @@
     }
   },
   {
+    "model": "game.player",
+    "pk": 6,
+    "fields": {
+		"name": "Hannan Aharonov"
+    }
+  },
+  {
+    "model": "game.player",
+    "pk": 7,
+    "fields": {
+		"name": "Boaz Ackerman"
+    }
+  },
+  {
+    "model": "game.player",
+    "pk": 8,
+    "fields": {
+		"name": "Lior Neudorfer"
+    }
+  },
+  {
+    "model": "game.player",
+    "pk": 9,
+    "fields": {
+		"name": "Keshet Pardo"
+    }
+  },
+  {
+    "model": "game.player",
+    "pk": 10,
+    "fields": {
+		"name": "Alex Rozental"
+    }
+  },
+  {
     "model": "game.game",
     "pk": 1,
     "fields": {
@@ -85,10 +398,18 @@
 		"chips": 330,
 		"bounty": 0,
 		"blind_schema": 1,
-		"blind_level": 1,
-        "time_in_blind_level": 0.0,
-        "blind_level_curr_start": 0.0,
 		"players": [1, 2, 5]
+    }
+  },
+  {
+    "model": "game.game",
+    "pk": 2,
+    "fields": {
+		"pay": 20,
+		"chips": 330,
+		"bounty": 5,
+		"blind_schema": 2,
+		"players": [1, 2, 5, 7, 8]
     }
   }
 ]

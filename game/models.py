@@ -84,10 +84,11 @@ class Game(models.Model):
     pay = models.IntegerField()     # Per player
     chips = models.IntegerField()   # Per player
     bounty = models.IntegerField()
-    date = models.DateField(default=datetime.date.today)
+    time = models.DateTimeField(default=datetime.datetime.now)
     
     players = models.ManyToManyField(Player, related_name='games')
-    players_lost = models.ManyToManyField(Player, default=[], related_name='lost')
+    players_lost = models.ManyToManyField(Player, default=[], 
+                                          related_name='lost', blank=True, null=True)
     blind_schema = models.ForeignKey(BlindSchema)
     
     # State
@@ -98,7 +99,7 @@ class Game(models.Model):
     aborted = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return 'Game: {}'.format(self.date)
+        return 'Game: {}'.format(self.time)
     
     def starting_player_num(self):
         """

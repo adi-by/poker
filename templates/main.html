@@ -1,5 +1,23 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-{% for game in games %}
-    <li>{{ game }}</li>
-{% endfor %}
+
+<table class="table table-striped">  
+        <thead>  
+          <tr>  
+            <th>Game ID</th>  
+            <th>Start time</th>  
+            <th>Starting Players</th>  
+            <th>Current Players</th>  
+          </tr>  
+        </thead>  
+        <tbody>  
+		   {% for game in games %}
+		   <tr>
+      		   <td>{{game.pk}}</td>
+      		   <td>{{game.time}}</td>
+      		   <td>{{game.starting_player_num}}</td>
+      		   <td>{{game.curr_player_num}}</td>
+      	   </tr>
+  		  {% endfor %}  
+        </tbody>  
+</table>  
