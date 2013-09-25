@@ -23,77 +23,85 @@
         {% endfor %}
         initial_state = JSON.parse('{{game.get_blind_state|jsonify}}');
         initial_is_running = JSON.parse('{{game.is_running|jsonify}}');
+        total_chips = {{game.chips}} * {{game.starting_player_num}};
     </script>
     <script src="{% static 'js/main.js' %}"></script>
 </head>
 <body ng-controller="Server">
 <div class="row-fluid text-center">
     <div class="span12">
-    <div id='clock' ng-controller="Timer">
-        <div class="row-fluid">
-        <h2 id='Level' class="span6 offset3 level-class" disabled="disabled">
-            <span>Level {[{level}]}</span>
-        </h2>
+        <div id='clock' ng-controller="Timer">
+            <div class="row-fluid">
+            <h2 id='Level' class="span6 offset3 level-class" disabled="disabled">
+                <span>Level {[{level}]}</span>
+            </h2>
+                </div>
+            <div class="row-fluid">
+            <h1 class="span6 offset3 clock-class">
+                <span >{[{minutes()}]}:{[{seconds() | numberFixedLen:2}]}</span>
+            </h1>
             </div>
-        <div class="row-fluid">
-        <h1 class="span6 offset3 clock-class">
-            <span >{[{minutes()}]}:{[{seconds() | numberFixedLen:2}]}</span>
-        </h1>
-        </div>
-        <div class="row-fluid">
-        <h1 class="span6 offset3">
-            <button class='btn btn-large btn-default btn-success start-class' ng-click="flip()">
-                <span>{[{btn()}]}</span>
-            </button>
-        </h1>
-         </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span6 offset3 blind-class">
-            <h2>
-                <span ng-controller="BlindValue" ng-init="init('small', false)">Blinds: {[{value}]}</span>
-                <span ng-controller="BlindValue" ng-init="init('big', false)">/ {[{value}]}</span>
-            </h2>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span6 offset3" ng-controller="AnteValue" ng-init="init('ante', false)">
-            <h2>
-                <span>Ante: {[{value}]}</span>
-            </h2>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span6 offset3">
-            <h3>
-                <span ng-controller="BlindValue" ng-init="init('small', true)">Next: {[{value}]}</span>
-                <span ng-controller="BlindValue" ng-init="init('big', true)">/ {[{value}]}</span>
-                <span ng-controller="AnteValue" ng-init="init('ante', true)">({[{value}]})</span>
-            </h3>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span6 offset3" ng-controller="CountPlayers">
-            <h3>
-                <span>Players: {[{count()}]}</span>
-            </h3>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span6 offset3" ng-controller="Players">
-            <div class="btn-group">
-                <button class="btn dropdown-toggle" data-toggle="dropdown">
-                    Man Down
-                    <span class="caret"></span>
+            <div class="row-fluid">
+            <h1 class="span6 offset3">
+                <button class='btn btn-large btn-default btn-success start-class' ng-click="flip()">
+                    <span>{[{btn()}]}</span>
                 </button>
-                <ul class="dropdown-menu">
-                    <li ng-repeat="player in players">
-                        <a ng-click="remove(player)">{[{player.name}]}</a>
-                    </li>
-                </ul>
+            </h1>
+             </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span6 offset3 blind-class">
+                <h2>
+                    <span ng-controller="BlindValue" ng-init="init('small', false)">Blinds: {[{value}]}</span>
+                    <span ng-controller="BlindValue" ng-init="init('big', false)">/ {[{value}]}</span>
+                </h2>
             </div>
         </div>
-    </div>
+        <div class="row-fluid">
+            <div class="span6 offset3" ng-controller="AnteValue" ng-init="init('ante', false)">
+                <h2>
+                    <span>Ante: {[{value}]}</span>
+                </h2>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span6 offset3">
+                <h3>
+                    <span ng-controller="BlindValue" ng-init="init('small', true)">Next: {[{value}]}</span>
+                    <span ng-controller="BlindValue" ng-init="init('big', true)">/ {[{value}]}</span>
+                    <span ng-controller="AnteValue" ng-init="init('ante', true)">({[{value}]})</span>
+                </h3>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span6 offset3" ng-controller="CountPlayers">
+                <h3>
+                    <span>Players: {[{count()}]}</span>
+                </h3>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span6 offset3" ng-controller="Players">
+                <div class="btn-group">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                        Man Down
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="player in players">
+                            <a ng-click="remove(player)">{[{player.name}]}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span6 offset3" ng-controller="Stack">
+                <h3>
+                    <span>Average stack: {[{average()}]}</span>
+                </h3>
+            </div>
+        </div>
     </div>
 </div>
 </body>

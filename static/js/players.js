@@ -26,3 +26,12 @@ function CountPlayers($scope, players) {
         return players.length;
     }
 }
+
+function Stack($scope, players, total_chips) {
+    $scope.average = function() {
+         if (players.length == 0) {
+             return 0;
+         }
+        return Math.round(total_chips / players.length);
+    }
+}
