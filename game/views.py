@@ -7,6 +7,12 @@ from django_sse.redisqueue import send_event
 from models import Game, Player
 
 
+def main(request):
+    """
+    Main page.
+    """
+    return render(request, 'main.html', {'games': Game.objects.all()})
+    
 def game(request, game_id):
     """
     Send game context to client side.
@@ -42,6 +48,10 @@ def clock(request, game_id):
         curr_game.pause_playing()
         
     curr_game.save()
+    
+    # Sending event
+    json_data = json.dumps({'game': game_id, 'is_running': is_running})
+    send_event("an_event", json_data, channel="data")
     
     print 'Done sending!'
     return HttpResponse()
