@@ -32,12 +32,12 @@ def clock(request, game_id):
     """
     
     curr_game = get_object_or_404(Game, pk=game_id)
-    is_running = request.GET.get('is_running', '')
-    
+    is_running_str = request.GET.get('is_running', '')
+    is_running = json.loads(is_running_str)
     if is_running:
         curr_game.start_playing()
     else:
-        curr_game.calculate_blind_state()
+        curr_game.pause_playing()
         
     curr_game.save()
     
