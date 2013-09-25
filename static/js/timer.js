@@ -12,7 +12,6 @@ function Timer($scope, $timeout, $rootScope, $http, blinds,
         return $scope.level == blinds.length && $scope.time_left == 0;
     }
 
-
     $scope._timeout = null;
     $scope.set_time = function(level, time) {
         if (level != $scope.level) {
@@ -23,17 +22,12 @@ function Timer($scope, $timeout, $rootScope, $http, blinds,
     };
 
     $rootScope.$on('timeUpdate', function(_, data) {
-        console.log('timeUpdate ' + data.level +', ' + data.time);
         $scope.set_time(data.level, data.time);
         $scope.update_paused(!data.is_running);
     });
 
 
     $scope._start_timeout = function() {
-//        var timeout = 1000;
-//        if (($scope.time_left % 1000) != 0) {
-//            timeout += Math.min($scope.time_left % 1000, 150); // adjust by at most 150ms.
-//        }
         var timeout = $scope.time_left % 1000;
         if (timeout == 0) {
             timeout = 1000;
@@ -78,7 +72,6 @@ function Timer($scope, $timeout, $rootScope, $http, blinds,
 
         $http({method: 'GET', url: 'clock/', params: {is_running: $scope.paused}}).
             success(function(data, status, headers, config) {
-                $scope.update_paused(!$scope.paused);
             });
     };
     $scope.btn = function() {
