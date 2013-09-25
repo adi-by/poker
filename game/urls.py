@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, url
+from django_sse.redisqueue import RedisQueueView
 import views
 
 urlpatterns = patterns('',
@@ -7,5 +8,7 @@ urlpatterns = patterns('',
         name='remove'),
     url(r'^(?P<game_id>\d+)/clock/$', views.clock, 
         name='clock'),
-    url(r'^(?P<game_id>\d+)/get_time/$', views.get_time, name='get_time')
+    url(r'^(?P<game_id>\d+)/get_time/$', views.get_time, name='get_time'),
+    url(r'^data_stream/$', RedisQueueView.as_view(redis_channel="data"), 
+        name="data_stream"),
 )
