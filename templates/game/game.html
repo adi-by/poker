@@ -21,6 +21,7 @@
         players.push(new Player(JSON.parse('{{player.name|jsonify}}'), JSON.parse('{{player.pk|jsonify}}')));
         {% endfor %}
         initial_state = JSON.parse('{{game.get_blind_state|jsonify}}');
+        initial_is_running = JSON.parse('{{game.is_running|jsonify}}');
     </script>
     <script src="{% static 'js/main.js' %}"></script>
 </head>

@@ -15,7 +15,8 @@ angular.module('Poker', [])
     value('blinds', blinds).
     value('players', players).
     value('initial_level', initial_state[0]).
-    value('initial_time', initial_state[1]);
+    value('initial_time', initial_state[1]).
+    value('initial_is_running', initial_is_running);
 
 
 function Audio($rootScope, $element) {
