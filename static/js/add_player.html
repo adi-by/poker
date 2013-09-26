@@ -1,0 +1,14 @@
+<h2>New player</h2>
+<form name="AddPlayer">
+    <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+        <label>Name</label>
+        <input type="text" name="name" ng-model="name" required>
+        <span ng-show="AddPlayer.name.$error.required" class="help-inline">
+            Required</span>
+    </div>
+
+    <br>
+    <a ui-sref="start" class="btn">Cancel</a>
+    <button ng-click="save()" ng-disabled="isClean() || AddPlayer.$invalid"
+            class="btn btn-primary">Save</button>
+</form>

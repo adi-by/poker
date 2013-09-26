@@ -9,9 +9,12 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular-resource.min.js">
     <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/angular-ui-router.min.js" %}"></script>
     <script src="{% static "js/ng-table.js" %}"></script>
     <script src="{% static 'js/gametable.js' %}"></script>
+    <script src="{% static 'js/players_select.js' %}"></script>
     <script type="text/javascript">
         games = []
         {% for game in games %}
@@ -47,6 +50,13 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="row-fluid">
+        <h1>New Game</h1>
+        <div class="span4" ui-view='players-view'>
+
+        </div>
+
     </div>
 </div>
 </body>
