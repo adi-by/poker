@@ -1,19 +1,19 @@
-<h2>Add Players</h2>
+<h2>Players</h2>
 <input type="text" ng-model="search" class="search-query" placeholder="Search player">
 
-<table class="table">
+<table class="table table-select">
     <thead>
         <tr>
             <th>Player</th>
-            <th>Add</th>
             <th><a ui-sref='add_player'><i class="icon-plus-sign"></i></a></th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="player in players | filter:search | orderBy:'name'">
+        <tr ng-repeat="player in players | filter:search | orderBy:'name'"
+            ng-class="row_class(player)" ng-click="flip(player)"
+            ng-mouseenter="show = true" ng-mouseleave="show = false">
             <td>{[{player.name}]}</td>
-            <td><i class="icon-plus-sign"></i></td>
-            <td><i class="icon-pencil"></i></td>
+            <td><i ng-show="show" class="icon-pencil"></i></td>
         </tr>
     </tbody>
 </table>
