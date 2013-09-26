@@ -51,11 +51,11 @@
         <text>Man%20Down%21</text>
       </controlProperties>
     </control>
-    <control controlID="12" controlTypeID="com.balsamiq.mockups::Title" x="654" y="149" w="212" h="-1" measuredW="183" measuredH="75" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Title" x="576" y="121" w="376" h="-1" measuredW="304" measuredH="123" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <bold>false</bold>
         <color>13421772</color>
-        <size>72</size>
+        <size>120</size>
         <text>12%3A24</text>
       </controlProperties>
     </control>
