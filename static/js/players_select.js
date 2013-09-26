@@ -1,4 +1,4 @@
-function PlayersSelect($scope) {
+function PlayersSelect($scope, $rootScope) {
     $scope.players = [{name: 'Sion', key: 1, playing: false},
         {name: 'Adi', key:2, playing: false},
         {name: 'Lior', key:3, playing: false}];
@@ -16,11 +16,11 @@ function PlayersSelect($scope) {
     }
 }
 
-function AddPlayer($scope, $state) {
+function AddPlayer($scope, $rootScope, $state) {
     var key = 10;
 
     $scope.save = function() {
-        $scope.players.push({name: $scope.name, key: key});
+        console.log('New player ' + $scope.name);
         key++;
         $state.go('start');
     }
