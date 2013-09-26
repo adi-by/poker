@@ -205,13 +205,18 @@ class Game(models.Model):
     
     def is_active(self):
         return not self.aborted and self.curr_player_num > 1
+
+    def get_prizes(self):
+        """
+        Return prizes for game.
+        """
+        return self.prizes.all()
      
 
 class Prize(models.Model):
     """
     A Prize money for a game.
     """
-    
     place = models.IntegerField()
     money = models.IntegerField()
     game = models.ForeignKey(Game, related_name='prizes')
