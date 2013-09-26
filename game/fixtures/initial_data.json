@@ -439,5 +439,32 @@
 		"blind_schema": 3,
 		"players": [1, 2, 3, 4, 5, 7, 12, 13, 14]
     }
+  },
+  {
+    "model": "game.prize",
+    "pk": 1,
+    "fields": {
+		"place": 1,
+		"money": 140,
+		"game": 2
+    }
+  },
+  {
+    "model": "game.prize",
+    "pk": 2,
+    "fields": {
+		"place": 2,
+		"money": 60,
+		"game": 2
+    }
+  },
+  {
+    "model": "game.prize",
+    "pk": 3,
+    "fields": {
+		"place": 3,
+		"money": 20,
+		"game": 2
+    }
   }
 ]
