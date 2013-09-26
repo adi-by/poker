@@ -1,3 +1,10 @@
+function Level($scope, $rootScope, initial_level) {
+    $scope.level = initial_level;
+    $rootScope.$on('levelUp', function(_, level) {
+        $scope.level = level;
+    });
+}
+
 function BlindValue($scope, $rootScope, $element, blinds, initial_level) {
     $scope.init = function(name, is_next) {
         $scope.name = name;

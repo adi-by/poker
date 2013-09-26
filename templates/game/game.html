@@ -32,11 +32,6 @@
     <div class="span12">
         <div id='clock' ng-controller="Timer">
             <div class="row-fluid">
-            <h2 id='Level' class="span6 offset3 level-class" disabled="disabled">
-                <span>Level {[{level}]}</span>
-            </h2>
-                </div>
-            <div class="row-fluid">
             <h1 class="span6 offset3 clock-class">
                 <span >{[{minutes()}]}:{[{seconds() | numberFixedLen:2}]}</span>
             </h1>
@@ -48,6 +43,11 @@
                 </button>
             </h1>
              </div>
+        </div>
+        <div class="row-fluid" ng-controller="Level">
+            <h2 id='Level' class="span6 offset3 level-class" disabled="disabled">
+                <span>Level {[{level}]}</span>
+            </h2>
         </div>
         <div class="row-fluid">
             <div class="span6 offset3 blind-class">
