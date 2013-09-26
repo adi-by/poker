@@ -13,6 +13,7 @@
     <script src="{% static "js/timer.js" %}"></script>
     <script src="{% static 'js/blind.js' %}"></script>
     <script src="{% static 'js/players.js' %}"></script>
+    <script src="{% static 'js/prizes.js' %}"></script>
     <script type="text/javascript">
         audio_file = '{% static 'audio/levelup.mp3' %}';
         game_key = JSON.parse('{{game.pk|jsonify}}');
@@ -24,6 +25,7 @@
         initial_state = JSON.parse('{{game.get_blind_state|jsonify}}');
         initial_is_running = JSON.parse('{{game.is_running|jsonify}}');
         total_chips = {{game.chips}} * {{game.starting_player_num}};
+        prizes = JSON.parse('{{game.get_prizes|jsonify}}');
     </script>
     <script src="{% static 'js/game.js' %}"></script>
 </head>
@@ -38,7 +40,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="player in players" ng-click="go(game.key)"
+            <tr ng-repeat="player in players"
                 ng-mouseenter="show = true" ng-mouseleave="show = false">
                 <td>{[{player.name}]}</td>
                 <td><i ng-show="show" class="icon-minus-sign"
@@ -127,6 +129,20 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="span3 box-class visible-desktop hidden-phone hidden-tablet" ng-controller="Prizes">
+        <table ng-table class="table visible-lg">
+            <thead>
+            <tr>
+                <th>Prizes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="prize in prizes | orderBy:place">
+                <td>Place {[{prize.place}]}: {[{prize.money}]}</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>

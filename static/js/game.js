@@ -17,7 +17,8 @@ angular.module('PokerGame', [])
     value('initial_level', initial_state[0]).
     value('initial_time', initial_state[1]).
     value('initial_is_running', initial_is_running).
-    value('total_chips', total_chips);
+    value('total_chips', total_chips).
+    value('prizes', prizes);
 
 function Server($scope, $rootScope, $http, $timeout, players) {
     $scope.get_time = function() {
