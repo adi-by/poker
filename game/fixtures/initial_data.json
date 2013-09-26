@@ -196,7 +196,7 @@
       "big": 2,
       "small": 1,
       "ante": 0,
-      "time": 1200000,
+      "time": 900000,
       "schema": 3
     }
   },
@@ -208,7 +208,7 @@
       "big": 4,
       "small": 2,
       "ante": 0,
-      "time": 1200000,
+      "time": 900000,
       "schema": 3
     }
   },
@@ -220,7 +220,7 @@
       "big": 6,
       "small": 3,
       "ante": 0,
-      "time": 1200000,
+      "time": 900000,
       "schema": 3
     }
   },
@@ -391,6 +391,34 @@
     }
   },
   {
+    "model": "game.player",
+    "pk": 11,
+    "fields": {
+		"name": "Noam Lerner"
+    }
+  },
+  {
+    "model": "game.player",
+    "pk": 12,
+    "fields": {
+		"name": "Jonathan Chayat"
+    }
+  },
+  {
+    "model": "game.player",
+    "pk": 13,
+    "fields": {
+		"name": "Yuval Madar"
+    }
+  },
+  {
+    "model": "game.player",
+    "pk": 14,
+    "fields": {
+		"name": "Kobi Tal"
+    }
+  },
+  {
     "model": "game.game",
     "pk": 1,
     "fields": {
@@ -408,8 +436,8 @@
 		"pay": 20,
 		"chips": 330,
 		"bounty": 5,
-		"blind_schema": 2,
-		"players": [1, 2, 5, 7, 8]
+		"blind_schema": 3,
+		"players": [1, 2, 3, 4, 5, 7, 12, 13, 14]
     }
   }
 ]

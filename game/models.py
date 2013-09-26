@@ -12,14 +12,14 @@ class Player(models.Model):
     """
     A poker player.
     """
-    
+
     name = models.CharField(max_length=MAX_NAME_LEN)
     
     money_total = models.IntegerField(default=0)
-    
+
     def __unicode__(self):
         return 'Player: {}'.format(self.name)
-    
+
     def games_played(self):
         """
         Return the number of games the player appears in.
@@ -27,7 +27,7 @@ class Player(models.Model):
         return len(self.games.all())
     
     def games_won(self):
-        return self.gamed_played() - len(self.lost.all())
+        return self.gamed_played() - len(self.lost.filter(aborted=False))
     
     def is_active(self, game_num):
         """
