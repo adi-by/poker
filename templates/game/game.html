@@ -32,7 +32,7 @@
 <body ng-controller="Server">
 <div class="row-fluid text-center">
     <div class="span3 box-class visible-desktop hidden-phone hidden-tablet players-table" ng-controller="Players">
-        <table ng-table class="table table-hover table-select visible-lg">
+        <table ng-table class="table table-hover visible-lg">
             <thead>
             <tr>
                 <th>Players</th>
@@ -43,8 +43,9 @@
             <tr ng-repeat="player in players"
                 ng-mouseenter="show = true" ng-mouseleave="show = false">
                 <td>{[{player.name}]}</td>
-                <td><i ng-show="show" class="icon-minus-sign"
-                       ng-click="remove(player)"></i></td>
+                <td><i ng-show="show" ng-click="remove(player)" class="remove-player">
+                    remove</i>
+                </td>
             </tr>
             </tbody>
         </table>
