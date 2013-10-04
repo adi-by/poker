@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-{% load jsonify %}
+{% load encode %}
 <html ng-app='Poker'>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,13 +15,14 @@
     <script src="{% static "js/ng-table.js" %}"></script>
     <script src="{% static 'js/gametable.js' %}"></script>
     <script src="{% static 'js/players_select.js' %}"></script>
+    <script src="{% static 'js/util.js' %}"></script>
     <script type="text/javascript">
         games = []
         {% for game in games %}
-        games.push(new Game('{{game.pk|jsonify}}',
+        games.push(new Game(decode('{{game.pk|encode}}'),
                 '{{game.time}}',
-                '{{game.starting_player_num|jsonify}}',
-                '{{game.curr_player_num|jsonify}}'));
+                decode('{{game.starting_player_num|encode}}'),
+                decode('{{game.curr_player_num|encode}}')));
         {% endfor %}
     </script>
     <script src="{% static 'js/main.js' %}"></script>

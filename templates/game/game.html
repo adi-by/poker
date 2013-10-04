@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-{% load jsonify %}
+{% load encode %}
 <html ng-app="PokerGame">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,18 +14,19 @@
     <script src="{% static 'js/blind.js' %}"></script>
     <script src="{% static 'js/players.js' %}"></script>
     <script src="{% static 'js/prizes.js' %}"></script>
+    <script src="{% static 'js/util.js' %}"></script>
     <script type="text/javascript">
         audio_file = '{% static 'audio/levelup.mp3' %}';
-        game_key = JSON.parse('{{game.pk|jsonify}}');
-        blinds = JSON.parse('{{game.get_blinds|jsonify}}');
+        game_key = decode('{{game.pk|encode}}');
+        blinds = decode('{{game.get_blinds|encode}}');
         players = []
         {% for player in game.get_players %}
-        players.push(new Player(JSON.parse('{{player.name|jsonify}}'), JSON.parse('{{player.pk|jsonify}}')));
+        players.push(new Player(decode('{{player.name|encode}}'), decode('{{player.pk|encode}}')));
         {% endfor %}
-        initial_state = JSON.parse('{{game.get_blind_state|jsonify}}');
-        initial_is_running = JSON.parse('{{game.is_running|jsonify}}');
+        initial_state = decode('{{game.get_blind_state|encode}}');
+        initial_is_running = decode('{{game.is_running|encode}}');
         total_chips = {{game.chips}} * {{game.starting_player_num}};
-        prizes = JSON.parse('{{game.get_prizes|jsonify}}');
+        prizes = decode('{{game.get_prizes|encode}}');
     </script>
     <script src="{% static 'js/game.js' %}"></script>
 </head>
