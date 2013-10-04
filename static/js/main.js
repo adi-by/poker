@@ -9,14 +9,18 @@ angular.module('Poker', ['ngTable', 'ui.router']).
                 url: "",
                 views: {
                     "players-view": { templateUrl: "/static/js/start.players.html",
-                        controller:PlayersSelect}
+                        controller:PlayersSelect},
+                    "blinds-view": { templateUrl: "/static/js/start.blinds.html",
+                        controller:BlindsEdit}
                 }
             })
             .state('add_player', {
                 url: "",
                 views: {
                     "players-view": { templateUrl: "/static/js/add_player.html",
-                        controller:AddPlayer}
+                        controller:AddPlayer},
+                    "blinds-view": { templateUrl: "/static/js/start.blinds.html",
+                        controller:BlindsEdit}
                 }
             })
     }).

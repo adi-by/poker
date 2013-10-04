@@ -1,0 +1,50 @@
+<h2>Blinds</h2>
+<form name="EditBlinds">
+    <div class="control-group" ng-class="{error: EditBlinds.small.$invalid}"><table class="table">
+            <thead>
+            <tr>
+                <th>Level</th>
+                <th>Small</th>
+                <th>Big</th>
+                <th>Ante</th>
+                <th>Minutes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="level in levels | orderBy:'num'" class="form-inline">
+                <td>{[{level.num}]}</td>
+                <td><input type="number" min="1" ng-model="level.small" required class="input-mini"
+                        ng-readonly="!editable"></td>
+                <td><input type="number" min="1" ng-model="level.big" required class="input-mini"
+                        ng-readonly="!editable"></td>
+                <td><input type="number" min="0" ng-model="level.ante" required class="input-mini"
+                        ng-readonly="!editable"></td>
+                <td><input type="number" min="1" ng-model="level.time" required class="input-mini"
+                        ng-readonly="!editable"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <button ng-show="!editable" ng-click="edit()" class="btn btn-primary">Edit</button>
+        <button ng-show="!editable" ng-click="delete()" class="btn btn-danger">Delete</button>
+        <div ng-show="editable" class="row">
+            <div class="span2 offset2">
+                <button ng-click="save()" ng-disabled="isClean() || EditBlinds.$invalid"
+                        class="btn btn-primary">Save</button>
+            </div>
+            <div class="span4 form-inline">
+                <button ng-click="create()" ng-disabled="isClean() || EditBlinds.$invalid"
+                        class="btn btn-primary">Create</button>
+                <input type="text" ng-model="schema" class="input-small" placeholder="new schema">
+            </div>
+            <div class="span2">
+                <button ng-click="cancel()" ng-disabled="isClean() || EditBlinds.$invalid"
+                        class="btn btn-danger">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <br>
+</form>
+
+
