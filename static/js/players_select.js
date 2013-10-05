@@ -1,21 +1,43 @@
 function PlayersSelect($scope, $rootScope) {
     if (!('players' in $rootScope)) {
-        $rootScope.players = [{name: 'Sion', key: 1, playing: false},
-            {name: 'Adi', key:2, playing: false},
+        $rootScope.players = [{name: 'Sion', key: 1, playing: true},
+            {name: 'Adi', key:2, playing: true},
             {name: 'Lior', key:3, playing: false}];
     }
     $scope.players = $rootScope.players;
 
-    $scope.flip = function(player) {
-        player.playing = !player.playing;
+    $scope.typeaheadValue = '';
+    $scope.typeahead = [];
+    $scope.$watch('typeaheadValue', function(value, old) {
+        value = value.toLowerCase();
+        var matching = [];
+        $scope.players.forEach(function(player) {
+            if (!player.playing && player.name.toLowerCase().indexOf(value) != -1) {
+                matching.push(player.name);
+            }
+        });
+       $scope.typeahead = matching;
+    });
+    $scope.add = function () {
+        $scope.players.forEach(function(player) {
+            if (player.name == $scope.typeaheadValue) {
+                player.playing = true;
+                $scope.typeaheadValue = '';
+            }
+        });
     }
 
-    $scope.row_class = function(player) {
-        if (player.playing) {
-            return "selected-element";
-        } else {
-            return "";
-        }
+    $scope.playing = function() {
+        var output = [];
+        $scope.players.forEach(function(player) {
+            if (player.playing) {
+                output.push(player);
+            }
+        });
+        return output;
+    }
+    $scope.remove = function(player) {
+        player.playing = false;
     }
 }
 

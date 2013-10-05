@@ -1,4 +1,4 @@
-angular.module('Poker', ['ngTable', 'ui.router']).
+angular.module('Poker', ['$strap.directives', 'ngTable', 'ui.router']).
     config(function($interpolateProvider) {
         $interpolateProvider.startSymbol('{[{');
         $interpolateProvider.endSymbol('}]}');
