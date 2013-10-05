@@ -1,6 +1,7 @@
 <h2>Blinds</h2>
 <form name="EditBlinds">
-    <div class="control-group" ng-class="{error: EditBlinds.small.$invalid}"><table class="table">
+    <div ng-class="{error: EditBlinds.small.$invalid}">
+        <table class="table table-bordered">
             <thead>
             <tr>
                 <th>Level</th>
@@ -11,36 +12,36 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="level in levels | orderBy:'num'" class="form-inline">
-                <td>{[{level.num}]}</td>
-                <td><input type="number" min="1" ng-model="level.small" required class="input-mini"
-                        ng-readonly="!editable"></td>
-                <td><input type="number" min="1" ng-model="level.big" required class="input-mini"
-                        ng-readonly="!editable"></td>
-                <td><input type="number" min="0" ng-model="level.ante" required class="input-mini"
-                        ng-readonly="!editable"></td>
-                <td><input type="number" min="1" ng-model="level.time" required class="input-mini"
-                        ng-readonly="!editable"></td>
+            <tr ng-repeat="level in levels | orderBy:'num'" class="form-inline table-blind-cell">
+                <td style="vertical-align: middle">{[{level.num}]}</td>
+                <td ng-show="editable"><input type="number" min="1" ng-model="level.small" required class="input-micro"></td>
+                <td ng-show="editable"><input type="number" min="1" ng-model="level.big" required class="input-micro"></td>
+                <td ng-show="editable"><input type="number" min="0" ng-model="level.ante" required class="input-micro"></td>
+                <td ng-show="editable"><input type="number" min="1" ng-model="level.time" required class="input-micro"></td>
+                <td ng-show="!editable">{[{level.small}]}</td>
+                <td ng-show="!editable">{[{level.big}]}</td>
+                <td ng-show="!editable">{[{level.ante}]}</td>
+                <td ng-show="!editable">{[{level.time}]}</td>
             </tr>
             </tbody>
         </table>
 
         <button ng-show="!editable" ng-click="edit()" class="btn btn-primary">Edit</button>
         <button ng-show="!editable" ng-click="delete()" class="btn btn-danger">Delete</button>
-        <div ng-show="editable" class="row">
-            <div class="span2 offset2">
+        <div ng-show="editable" class="row-fluid">
+            <!--<div class="span2 offset1 row-margins">-->
                 <button ng-click="save()" ng-disabled="isClean() || EditBlinds.$invalid"
                         class="btn btn-primary">Save</button>
-            </div>
-            <div class="span4 form-inline">
+            <!--</div>-->
+            <!--<div class="span7 form-inline row-margins">-->
+                <input type="text" ng-model="schema" class="input-small" style="margin-top: 10px" placeholder="new schema">
                 <button ng-click="create()" ng-disabled="isClean() || EditBlinds.$invalid"
                         class="btn btn-primary">Create</button>
-                <input type="text" ng-model="schema" class="input-small" placeholder="new schema">
-            </div>
-            <div class="span2">
+            <!--</div>-->
+            <!--<div class="span2 row-margins">-->
                 <button ng-click="cancel()" ng-disabled="isClean() || EditBlinds.$invalid"
                         class="btn btn-danger">Cancel</button>
-            </div>
+            <!--</div>-->
         </div>
     </div>
 
